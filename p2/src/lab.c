@@ -36,6 +36,15 @@ list_t *list_init(void (*destroy_data)(void *),
 
 void list_destroy(list_t **list)
 {
+    node_t* cur = (*list)->head->next;
+    while(cur != (*list)->head) {
+        (*list)->head->next = cur->next;
+        cur = NULL;
+        free(cur);
+        cur = (*list)->head->next;
+    }
+    (*list)->head = NULL;
+    free((*list)->head);
     *list = NULL;
     free(*list);
     return ;
