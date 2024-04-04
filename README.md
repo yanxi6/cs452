@@ -1,4 +1,4 @@
-# Makefile Project Template
+# CS 452
 
 Steps to configure, build, run, and test the project.
 
