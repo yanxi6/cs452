@@ -19,19 +19,22 @@ char **cmd_parse(char const *line) {
     int c_k = 0;
     int c_j = 0;
     int cnt = 0; // c_k: line; c_j: tmp count
-    for ( ; line[c_k] != '/0'; c_k++) {
+    for ( ; line[c_k] != '\0'; c_k++) {
         if (line[c_k] == ' ') {
-            tmp[c_j] = '/0';
-            rval[cnt] = (char*)malloc(3 * sizeof(char));
-            strcpy(rval[cnt], "ls");
+            tmp[c_j] = '\0';
+            rval[cnt] = (char*)malloc((c_j + 1) * sizeof(char));
+            strcpy(rval[cnt++], tmp);
             c_j = 0;
-            cnt++;
         } else {
             tmp[c_j] = line[c_k];
             c_j++;
 
         }
-
+    }
+    if(c_j > 0) {
+        tmp[c_j] = '\0';
+        rval[cnt] = (char*)malloc((c_j + 1) * sizeof(char));
+        strcpy(rval[cnt++], tmp);
     }
     rval[cnt++] = NULL;
     return rval;
