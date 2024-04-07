@@ -40,13 +40,36 @@ char **cmd_parse(char const *line) {
     return rval;
 }
 
-
 void cmd_free(char ** line) {
+    for (int i = 0; i < 10; i ++) {
+        line[i] = NULL;
+        free(line[i]);
+    }
+    free(line);
     return ;
 }
 
 char *trim_white(char *line) {
-    return NULL;
+    // ls -a
+    int len = strlen(line);
+    char* res;
+    int i = 0, j = len - 1, k = 0;
+    while(i < len && line[i] == ' ') {
+        i++;
+    }
+    while(j >= 0 && line[j] == ' ') {
+        j--;
+    }
+    if (j < i) {
+        return "";
+
+    }
+    res = (char*)malloc((j - i + 2) * sizeof(char));
+    while(i <= j) {
+        res[k++] = line[i++];
+    }
+    res[k] = '\0';
+    return res;
 }
 
 bool do_builtin(struct shell *sh, char **argv) {
