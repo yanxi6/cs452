@@ -4,7 +4,16 @@
 
 
 char *get_prompt(const char *env) {
-    return NULL;
+    
+    char* res = (char*)malloc(100 * sizeof(char));
+
+    if(strcmp(env, "MY_PROMPT") == 0) {
+        // default prompt
+        strcpy(res, "shell>");
+        return res;
+    }
+
+    return res;
 }
 
 int change_dir(char **dir) {
