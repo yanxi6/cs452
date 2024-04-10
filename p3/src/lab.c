@@ -6,13 +6,13 @@
 char *get_prompt(const char *env) {
     
     char* res = (char*)malloc(100 * sizeof(char));
+    char *custom = getenv("MY_PROMPT");
 
-    if(strcmp(env, "MY_PROMPT") == 0) {
+    if(!custom) {
         // default prompt
         strcpy(res, "shell>");
         return res;
     }
-
     return res;
 }
 
@@ -51,7 +51,6 @@ char **cmd_parse(char const *line) {
 
 void cmd_free(char ** line) {
     for (int i = 0; i < 10; i ++) {
-        line[i] = NULL;
         free(line[i]);
     }
     free(line);
