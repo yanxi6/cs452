@@ -1,19 +1,19 @@
 /**Update this file with the starter code**/
-# include "lab.h"
+#include "lab.h"
 #include <string.h>
 
 
 char *get_prompt(const char *env) {
     
     char* res = (char*)malloc(100 * sizeof(char));
-    char *custom = getenv("MY_PROMPT");
+    char* custom = getenv("MY_PROMPT");
 
     if(!custom) {
         // default prompt
         strcpy(res, "shell>");
         return res;
     }
-    return res;
+    return custom;
 }
 
 int change_dir(char **dir) {
